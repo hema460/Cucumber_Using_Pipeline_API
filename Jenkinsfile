@@ -14,20 +14,18 @@ bat 'mvn verify'
 }
 }
 
-post{
-always{
-publishHTML(target:[
-reportDir: 'target/cucumber-html-report',
-reportName: 'Cucumber Test Reports',
-reportFiles: 'feature-overview.html'
-
-
-])
-
-
-
-}
-
-}
-
+post {
+    always {
+        script {
+            if (fileExists('target/cucumber-html-report')) {
+                publishHTML(target: [
+                    reportDir: 'target/cucumber-html-report',
+                    reportFiles: 'feature-overview.html',
+                    reportName: 'Cucumber Test Reports'
+                ])
+            } else {
+                echo 'Report folder not found — skipping publish'
+            }
+        }
+    }
 }

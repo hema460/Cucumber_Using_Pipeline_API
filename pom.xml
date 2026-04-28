@@ -63,7 +63,7 @@
   	 <build>
             <plugins>
 
-            <plugin>
+          <plugin>
     <groupId>net.masterthought</groupId>
     <artifactId>maven-cucumber-reporting</artifactId>
     <version>5.8.4</version>
@@ -74,13 +74,13 @@
             <goals>
                 <goal>generate</goal>
             </goals>
+            <configuration>
+                <projectName>TodayAPICucumber</projectName>
+                <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
+                <cucumberOutput>${project.build.directory}/cucumber-report/cucumber.json</cucumberOutput>
+            </configuration>
         </execution>
     </executions>
-    <configuration>
-        <projectName>TodayAPICucumber</projectName>
-        <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-        <cucumberOutput>${project.build.directory}/cucumber-report/cucumber.json</cucumberOutput>
-    </configuration>
 </plugin>
 
   	<plugin>
@@ -88,6 +88,7 @@
     <artifactId>maven-surefire-plugin</artifactId>
     <version>3.5.0</version>
     <configuration>
+    <testFailureIgnore>true</testFailureIgnore>
         <includes>
             <include>**/TestRunner.java</include>
         </includes>

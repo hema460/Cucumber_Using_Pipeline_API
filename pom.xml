@@ -56,40 +56,35 @@
     </dependency>
 
     <!-- Reporting plugin dependency -->
-    <dependency>
-      <groupId>net.masterthought</groupId>
-      <artifactId>cucumber-reporting</artifactId>
-      <version>5.8.4</version>
-    </dependency>
-  </dependencies>
-
+</dependencies>
   <build>
     <plugins>
 
       <!-- ✅ Cucumber Report Plugin (FINAL WORKING CONFIG) -->
       <plugin>
-        <groupId>net.masterthought</groupId>
-        <artifactId>maven-cucumber-reporting</artifactId>
-        <version>5.8.4</version>
+    <groupId>net.masterthought</groupId>
+    <artifactId>maven-cucumber-reporting</artifactId>
+    <version>5.7.0</version>
 
-        <configuration>
-          <projectName>TodayAPICucumber</projectName>
-          <outputDirectory>target/cucumber-html-report</outputDirectory>
-          <jsonFiles>
+    <configuration>
+        <projectName>TodayAPICucumber</projectName>
+        <outputDirectory>target/cucumber-html-report</outputDirectory>
+
+        <jsonFiles>
             <param>target/cucumber-report/cucumber.json</param>
-          </jsonFiles>
-        </configuration>
+        </jsonFiles>
+    </configuration>
 
-        <executions>
-          <execution>
+    <executions>
+        <execution>
             <id>cucumber-report</id>
             <phase>verify</phase>
             <goals>
-              <goal>generate</goal>
+                <goal>generate</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
+        </execution>
+    </executions>
+</plugin>
 
       <!-- ✅ Surefire Plugin -->
       <plugin>

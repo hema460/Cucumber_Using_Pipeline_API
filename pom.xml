@@ -77,7 +77,9 @@
             <configuration>
                 <projectName>TodayAPICucumber</projectName>
                 <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                <cucumberOutput>${project.build.directory}/cucumber-report/cucumber.json</cucumberOutput>
+                <cucumberOutput>
+    <param>${project.build.directory}/cucumber-report/cucumber.json</param>
+</cucumberOutput>
             </configuration>
         </execution>
     </executions>

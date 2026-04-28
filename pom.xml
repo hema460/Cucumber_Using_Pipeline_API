@@ -63,7 +63,7 @@
   	 <build>
             <plugins>
 
-          <plugin>
+        <plugin>
     <groupId>net.masterthought</groupId>
     <artifactId>maven-cucumber-reporting</artifactId>
     <version>5.8.4</version>
@@ -74,15 +74,15 @@
             <goals>
                 <goal>generate</goal>
             </goals>
-            <configuration>
-                <projectName>TodayAPICucumber</projectName>
-                <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                <cucumberOutput>
-    <param>${project.build.directory}/cucumber-report/cucumber.json</param>
-</cucumberOutput>
-            </configuration>
         </execution>
     </executions>
+    <configuration>
+        <projectName>TodayAPICucumber</projectName>
+        <outputDirectory>target/cucumber-html-report</outputDirectory>
+        <jsonFiles>
+            <param>target/cucumber-report/cucumber.json</param>
+        </jsonFiles>
+    </configuration>
 </plugin>
 
   	<plugin>

@@ -10,7 +10,8 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat 'mvn verify'
+                // Continue build even if tests fail so report can generate
+                bat 'mvn clean verify -Dmaven.test.failure.ignore=true'
             }
         }
     }
@@ -18,14 +19,21 @@ pipeline {
     post {
         always {
             script {
-                if (fileExists('target/cucumber-html-report')) {
+                def reportPath = 'target/cucumber-html-report/feature-overview.html'
+
+                if (fileExists(reportPath)) {
+                    echo "Publishing Cucumber Report..."
+
                     publishHTML(target: [
                         reportDir: 'target/cucumber-html-report',
                         reportFiles: 'feature-overview.html',
-                        reportName: 'Cucumber Test Reports'
+                        reportName: 'Cucumber Test Reports',
+                        allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true
                     ])
                 } else {
-                    echo 'Report folder not found — skipping publish'
+                    echo "⚠ Cucumber report not found. Skipping publish step."
                 }
             }
         }

@@ -71,24 +71,24 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.8.4</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>TodayAPICucumber</projectName>
-                            <outputDirectory>target/cucumber-html-report</outputDirectory>
-                             <cucumberOutput>target/cucumber-report/cucumber.json</cucumberOutput>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+    <groupId>net.masterthought</groupId>
+    <artifactId>maven-cucumber-reporting</artifactId>
+    <version>5.8.4</version>
+    <executions>
+        <execution>
+            <id>cucumber-report</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>generate</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <projectName>TodayAPICucumber</projectName>
+        <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
+        <cucumberOutput>${project.build.directory}/cucumber-report/cucumber.json</cucumberOutput>
+    </configuration>
+</plugin>
 
   	<plugin>
     <groupId>org.apache.maven.plugins</groupId>

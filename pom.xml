@@ -83,8 +83,8 @@
                         </goals>
                         <configuration>
                             <projectName>TodayAPICucumber</projectName>
-                            <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/cucumber-report/cucumber.json</cucumberOutput>
+                            <outputDirectory>target/cucumber-html-report</outputDirectory>
+                             <cucumberOutput>target/cucumber-report/cucumber.json</cucumberOutput>
                         </configuration>
                     </execution>
                 </executions>

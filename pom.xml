@@ -1,102 +1,109 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>TodayAPICucumber</groupId>
   <artifactId>TodayAPICucumber</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
   <dependencies>
-  <dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>1.0.2</version>
-</dependency>
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <version>5.5.1</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20240303</version> </dependency>
-<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>7.7.1</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>net.masterthought</groupId>
-    <artifactId>cucumber-reporting</artifactId>
-    <version>5.8.4</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-java</artifactId>
-    <version>7.21.1</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>1.0.2</version>
+    </dependency>
 
-<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-testng</artifactId>
-    <version>7.21.1</version>
-</dependency>
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-picocontainer</artifactId>
-    <version>7.21.1</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.18.3</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>5.5.1</version>
+      <scope>test</scope>
+    </dependency>
 
-<!-- https://mvnrepository.com/artifact/junit/junit -->
-  
-  	</dependencies>
-  	 <build>
-            <plugins>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.7.1</version>
+      <scope>test</scope>
+    </dependency>
 
-        <plugin>
-    <groupId>net.masterthought</groupId>
-    <artifactId>maven-cucumber-reporting</artifactId>
-    <version>5.8.4</version>
-    <executions>
-        <execution>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.21.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>7.21.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>7.21.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.18.3</version>
+    </dependency>
+
+    <!-- Reporting plugin dependency -->
+    <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>cucumber-reporting</artifactId>
+      <version>5.8.4</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <!-- ✅ Cucumber Report Plugin (FINAL WORKING CONFIG) -->
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>5.8.4</version>
+
+        <configuration>
+          <projectName>TodayAPICucumber</projectName>
+          <outputDirectory>target/cucumber-html-report</outputDirectory>
+          <jsonFiles>
+            <param>target/cucumber-report/cucumber.json</param>
+          </jsonFiles>
+        </configuration>
+
+        <executions>
+          <execution>
             <id>cucumber-report</id>
             <phase>verify</phase>
             <goals>
-                <goal>generate</goal>
+              <goal>generate</goal>
             </goals>
-        </execution>
-    </executions>
-    <configuration>
-        <projectName>TodayAPICucumber</projectName>
-        <outputDirectory>target/cucumber-html-report</outputDirectory>
-        <jsonFiles>
-            <param>target/cucumber-report/cucumber.json</param>
-        </jsonFiles>
-    </configuration>
-</plugin>
+          </execution>
+        </executions>
+      </plugin>
 
-  	<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>3.5.0</version>
-    <configuration>
-    <testFailureIgnore>true</testFailureIgnore>
-        <includes>
+      <!-- ✅ Surefire Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <includes>
             <include>**/TestRunner.java</include>
-        </includes>
-    </configuration>
-</plugin>
-</plugins>
-            </build>
+          </includes>
+        </configuration>
+      </plugin>
 
+    </plugins>
+  </build>
 </project>

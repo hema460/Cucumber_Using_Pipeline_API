@@ -11,31 +11,19 @@ pipeline {
         stage('Build & Test') {
             steps {
                 // Continue build even if tests fail so report can generate
-                bat 'mvn clean verify -Dmaven.test.failure.ignore=true'
+                bat 'mvn clean test -Dmaven.test.failure.ignore=true'
             }
         }
     }
 
     post {
         always {
-            script {
-                def reportPath = 'target/cucumber-html-report/feature-overview.html'
-
-                if (fileExists(reportPath)) {
-                    echo "Publishing Cucumber Report..."
-
-                    publishHTML(target: [
-                        reportDir: 'target/cucumber-html-report',
-                        reportFiles: 'feature-overview.html',
-                        reportName: 'Cucumber Test Reports',
-                        allowMissing: true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true
-                    ])
-                } else {
-                    echo "⚠ Cucumber report not found. Skipping publish step."
-                }
-            }
+            // Publish Allure report
+            allure(
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'allure-results']]
+            )
         }
     }
 }

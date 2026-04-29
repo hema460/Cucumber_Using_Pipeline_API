@@ -1,0 +1,1 @@
+{"uuid":"6dd32e4d-d917-487f-9470-24b50fe0149f","name":"Scenario: Validate create and get place API","children":["2aafba94-d40b-4a3f-9756-f515adc57cea"],"befores":[{"name":"stepDef.Hooks.setUp()","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1777440483708,"stop":1777440485508}],"afters":[],"start":1777440483700,"stop":1777440496764}

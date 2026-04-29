@@ -8,12 +8,15 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <dependencies>
+
+    <!-- Faker -->
     <dependency>
       <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
       <version>1.0.2</version>
     </dependency>
 
+    <!-- Rest Assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -21,6 +24,29 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Cucumber (ALL SAME VERSION) -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.11.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>7.11.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>7.11.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- TestNG -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -28,77 +54,34 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>7.21.1</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-testng</artifactId>
-      <version>7.21.1</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-picocontainer</artifactId>
-      <version>7.21.1</version>
-      <scope>test</scope>
-    </dependency>
-
+    <!-- Jackson -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.18.3</version>
     </dependency>
 
-    <!-- Reporting plugin dependency -->
-</dependencies>
+    <!-- Allure -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.24.0</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
   <build>
     <plugins>
 
-      <!-- ✅ Cucumber Report Plugin (FINAL WORKING CONFIG) -->
-      <plugin>
-    <groupId>net.masterthought</groupId>
-    <artifactId>maven-cucumber-reporting</artifactId>
-    <version>5.7.0</version>
-
-    <configuration>
-        <projectName>TodayAPICucumber</projectName>
-        <outputDirectory>target/cucumber-html-report</outputDirectory>
-
-        <jsonFiles>
-            <param>target/cucumber-report/cucumber.json</param>
-        </jsonFiles>
-    </configuration>
-
-    <executions>
-        <execution>
-            <id>cucumber-report</id>
-            <phase>verify</phase>
-            <goals>
-                <goal>generate</goal>
-            </goals>
-        </execution>
-    </executions>
-</plugin>
-
-      <!-- ✅ Surefire Plugin -->
+      <!-- Surefire Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.0</version>
-        <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
-          <includes>
-            <include>**/TestRunner.java</include>
-          </includes>
-        </configuration>
       </plugin>
 
     </plugins>
   </build>
+
 </project>
